@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Cart from '../Cart/Cart';
 
 const Lunch = () => {
 
@@ -16,17 +18,23 @@ const Lunch = () => {
 
     return (
         <div className="row">
-            {
-                lunch.map(ln => (
-                    <div className="col-md-4">
-                        <div>
-                            <img className="img-fluid" src={ln.foodImg} alt={ln.foodName}/>
-                            <h4>{ln.foodName}</h4>
-                            <h3>Price: $ {ln.price} <span><button className="btn btn-success ml-auto">Add to Cart</button></span></h3>
-                        </div>
-                    </div>
-                ))
-            }
+            <div className="col-md-8">
+                <div className="row">
+                    {
+                        lunch.map(ln => (
+                            <div key={ln._id} className="col-md-4">
+                                <div>
+                                <Link to={`/foodDetails/${ln._id}`}><img className="img-fluid" src={ln.foodImg} alt={ln.foodName}/></Link>
+                                    <h5>{ln.foodName}</h5>
+                                    <h5>Price: $ {ln.price} <Link to={`/cart/${ln._id}`}><button className="btn btn-success ml-auto">Add to Cart</button></Link></h5>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div className="col-md-4">
+            </div>
         </div>
     );
 };

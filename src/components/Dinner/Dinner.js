@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Dinner = () => {
     const [dinner, setDinner] = React.useState([]);
@@ -17,11 +18,11 @@ const Dinner = () => {
         <div className="row">
             {
                 dinner.map(dnr => (
-                    <div className="col-md-4">
+                    <div key={dnr._id} className="col-md-4">
                         <div>
-                            <img className="img-fluid" src={dnr.foodImg} alt={dnr.foodName}/>
-                            <h4>{dnr.foodName}</h4>
-                            <h3>Price: $ {dnr.price} <span><button className="btn btn-success ml-auto">Add to Cart</button></span></h3>
+                        <Link to={`/foodDetails/${dnr._id}`}><img className="img-fluid" src={dnr.foodImg} alt={dnr.foodName}/></Link>
+                            <h5>{dnr.foodName}</h5>
+                            <h5>Price: $ {dnr.price} <Link to={`/cart/${dnr._id}`}><button className="btn btn-success ml-auto">Add to Cart</button></Link></h5>
                         </div>
                     </div>
                 ))
